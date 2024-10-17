@@ -11,7 +11,7 @@ interface logInInfo {
     password: string;
 }
 
-const LogIn = () => {
+const LogIn = ({navigation}:any) => {
     const [logInUser, {data: loginData, error: loginError, isSuccess: loginSuccess}] =
         useLoginMutation();
 
@@ -30,6 +30,8 @@ const LogIn = () => {
             }
         }
         if (loginSuccess) {
+            console.log(loginData);
+            navigation.navigate("GroupCollection");
             // router.push("/group");
         }
     }, [loginError, loginData, loginSuccess]);

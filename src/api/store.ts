@@ -1,12 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { userApi } from "./user";
-import { setupListeners } from "@reduxjs/toolkit/query";
+import {configureStore} from "@reduxjs/toolkit";
+import {userApi} from "./user";
+import {setupListeners} from "@reduxjs/toolkit/query";
 import userInformationReducer from "./userSlice";
-
-
-import { Provider } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// import { router } from "expo-router";
 
 const abc = (store: any) => (next: any) => (action: any) => {
     const setCreds = async (name: string, value: string): Promise<void> => {
@@ -14,7 +10,6 @@ const abc = (store: any) => (next: any) => (action: any) => {
         await AsyncStorage.setItem(name, value);
     };
     const removeCreds = async () => {
-        
         await AsyncStorage.removeItem("accessToken");
         await AsyncStorage.removeItem("refreshToken");
     };
@@ -39,7 +34,7 @@ export const store = configureStore({
         [userApi.reducerPath]: userApi.reducer,
         userInformation: userInformationReducer,
     },
-    middleware: (getDefaultMiddleware) =>
+    middleware: getDefaultMiddleware =>
         // getDefaultMiddleware().concat([userApi.middleware]),
         getDefaultMiddleware().concat([userApi.middleware, abc]),
 

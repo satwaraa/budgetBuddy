@@ -20,6 +20,7 @@ const Home = ({navigation}: any) => {
             // SplashScreen.hideAsync();
         }
         if (isSuccess) {
+            navigation.navigate("GroupCollection");
             // router.replace("/group")
         }
     }, [error, isSuccess]);
@@ -30,7 +31,7 @@ const Home = ({navigation}: any) => {
                 <CustomButton
                     title="logIn"
                     handlePress={() => {
-                        // router.push("/logIn");
+                        navigation.navigate("Login");
                     }}
                     containerStyles="w-[90%] mt-7"
                     textStyles="text-white "
