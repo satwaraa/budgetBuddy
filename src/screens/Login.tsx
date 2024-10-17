@@ -11,7 +11,7 @@ interface logInInfo {
     password: string;
 }
 
-const LogIn = ({navigation}:any) => {
+const LogIn = ({navigation}: any) => {
     const [logInUser, {data: loginData, error: loginError, isSuccess: loginSuccess}] =
         useLoginMutation();
 

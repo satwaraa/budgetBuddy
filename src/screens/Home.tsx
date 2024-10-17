@@ -5,6 +5,7 @@ import {View, Text} from "react-native";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 import {RootStackParamList} from "../App";
+import SplashScreen from "react-native-splash-screen";
 
 type HomeProps = NativeStackNavigationProp<RootStackParamList, "Home">;
 const Home = ({navigation}: any) => {
@@ -17,6 +18,7 @@ const Home = ({navigation}: any) => {
         // @ts-ignore
         if (error && error.status == 401) {
             navigation.navigate("Login");
+            SplashScreen.hide();
             // SplashScreen.hideAsync();
         }
         if (isSuccess) {
