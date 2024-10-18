@@ -9,6 +9,7 @@ import {store} from "./api/store.ts";
 import Login from "./screens/Login.tsx";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import Group from "./screens/group/Group.tsx";
+import CreateGroup from "./screens/group/CreateGroup.tsx";
 
 export type RootStackParamList = {
     Home: undefined;
@@ -20,7 +21,16 @@ const Drawer = createDrawerNavigator();
 function GroupCollection() {
     return (
         <Drawer.Navigator initialRouteName="Group">
-            <Drawer.Screen name="Group" component={Group} />
+            <Drawer.Screen
+                name="Group"
+                component={Group}
+                options={{headerShown: false}}
+            />
+            <Drawer.Screen
+                name="CreateGroup"
+                component={CreateGroup}
+                options={{headerShown: false}}
+            />
         </Drawer.Navigator>
     );
 }

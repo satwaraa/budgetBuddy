@@ -19,7 +19,7 @@ interface GroupInfo {
     };
 }
 
-const index = () => {
+const Group = ({navigation}: any) => {
     const [refresh] = useRefreshMutation();
     const [refreshing, setRefreshing] = useState(false);
 
@@ -102,6 +102,8 @@ const index = () => {
                             title="Create Group"
                             handlePress={() => {
                                 // TODO: fix navigation
+                                navigation.navigate("CreateGroup");
+
                                 // router.push("/group/createGroup");
                             }}
                             containerStyles="w-[90%] mt-7"
@@ -116,4 +118,4 @@ const index = () => {
     );
 };
 
-export default index;
+export default Group;
