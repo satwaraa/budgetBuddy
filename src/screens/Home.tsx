@@ -4,19 +4,20 @@ import {useEffect} from "react";
 import {View, Text} from "react-native";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
-import {RootStackParamList} from "../App";
+
 import SplashScreen from "react-native-splash-screen";
 
-type HomeProps = NativeStackNavigationProp<RootStackParamList, "Home">;
 const Home = ({navigation}: any) => {
-    const [sayHello, {data, isError, isLoading, isSuccess}] = useSayHelloMutation();
+    const [sayHello, {data, error, isLoading, isSuccess}] = useSayHelloMutation();
     useEffect(() => {
         sayHello("");
     }, []);
 
     useEffect(() => {
+        console.log(error, isLoading, isSuccess, data);
+
         // @ts-ignore
-        if (isError && isError.status == 401) {
+        if (error && error.status == 401) {
             navigation.navigate("Login");
             SplashScreen.hide();
             // SplashScreen.hideAsync();
@@ -25,7 +26,7 @@ const Home = ({navigation}: any) => {
             navigation.navigate("GroupCollection");
             // router.replace("/group")
         }
-    }, [isError, isLoading, isSuccess]);
+    }, [error, isLoading, isSuccess]);
 
     return (
         <SafeAreaView className="bg-primary h-full">

@@ -43,6 +43,7 @@ const LogIn = ({navigation}: any) => {
                     value={form.email}
                     handleChangeText={(e: any) => setForm({...form, email: e})}
                     placeholder="Email"
+                    autoCapitalize="none"
                 />
             </View>
             <View className="mt-5">
@@ -51,6 +52,7 @@ const LogIn = ({navigation}: any) => {
                     value={form.password}
                     handleChangeText={(e: any) => setForm({...form, password: e})}
                     placeholder="Password"
+                    autoCapitalize="none"
                 />
             </View>
 
