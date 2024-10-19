@@ -69,24 +69,24 @@ const Budget = () => {
                             className="rounded-xl border-2 h-[90px] m-2  justify-between flex-row"
                             style={containerStyle}>
                             <View className="item-center   justify-center h-full ml-2 flex-1">
-                                <Text className="text-2xl font-psemibold">
+                                <Text className="text-2xl font-psemibold text-black font-bold">
                                     {item.name}
                                 </Text>
                             </View>
                             <View className=" flex-1 items-center justify-center ">
                                 <View className="flex-row items-center">
-                                    <Text className="text-base font-psemibold ">
+                                    <Text className="text-base font-psemibold text-gray-700">
                                         Budget {"  "}
                                     </Text>
-                                    <Text className="text-base text-right font-pregular  flex-1 ml-2">
+                                    <Text className="text-base text-right font-pregular  flex-1 ml-2 text-black font-bold">
                                         {item.maxAmount}
                                     </Text>
                                 </View>
                                 <View className="flex-row">
-                                    <Text className="text-base font-psemibold">
+                                    <Text className="text-base font-psemibold text-gray-700">
                                         Remaining {"  "}
                                     </Text>
-                                    <Text className="text-base text-right font-pregular flex-1 ml-2">
+                                    <Text className="text-base text-right font-pregular flex-1 ml-2 text-black font-bold">
                                         {item.restAmount}
                                     </Text>
                                 </View>
