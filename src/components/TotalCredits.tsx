@@ -23,8 +23,13 @@ const TotalCredits = ({styles, groupId}: any) => {
     }, [userInformation]);
     return (
         <View className={`${styles} items-center justify-center`} style={containerStyle}>
-            <Text className="font-pbold text-3xl ">{totalAmount}+</Text>
-            <Text className="font-psemibold text-xl "> credits this month</Text>
+            <Text className="font-pbold text-3xl text-black  font-bold ">
+                {totalAmount}+
+            </Text>
+            <Text className="font-psemibold text-xl text-black ">
+                {" "}
+                credits this month
+            </Text>
         </View>
     );
 };

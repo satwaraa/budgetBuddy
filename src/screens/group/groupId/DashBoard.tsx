@@ -66,22 +66,22 @@ const DashBoard = () => {
                 style={containerStyle}>
                 <View className="flex-row  item-center justify-between">
                     <View className="flex-row items-center">
-                        <Text className=" font-pmedium uppercase text-lg">
+                        <Text className=" font-pmedium uppercase text-lg text-black">
                             {item.description}
                         </Text>
-                        <Text className="pl-1 font-pmedium text-gray-600">
+                        <Text className="pl-1 font-pmedium text-gray-600 ">
                             {item.amount}Rs.
                         </Text>
                     </View>
                     <View className="pl-1 mt-[3px] font-pmedium text-gray-600">
-                        <Text>
+                        <Text className="text-gray-600">
                             {formattedDate} {formattedTime}
                         </Text>
                     </View>
                 </View>
                 <View className="flex-row justify-between ">
                     <View className="flex-row items-center">
-                        <Text className="font-pmedium ">
+                        <Text className="font-pmedium text-black  ">
                             {item.category.name}-Remaining:
                         </Text>
                         <Text className="text-gray-600">
@@ -90,8 +90,8 @@ const DashBoard = () => {
                         </Text>
                     </View>
                     <View className="flex-row">
-                        <Text className="font-pmedium">User:-</Text>
-                        <Text className="font-pmedium uppercase text-gray-600">
+                        <Text className="font-pmedium text-gray-600">User:-</Text>
+                        <Text className="font-pextrabold font-bold uppercase text-black">
                             {" "}
                             {item.user.name}
                         </Text>

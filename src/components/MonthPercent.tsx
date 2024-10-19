@@ -27,8 +27,13 @@ const MonthPercent = ({styles, groupId}: any) => {
     }, [userInformation]);
     return (
         <View className={`${styles} items-center justify-center`} style={containerStyle}>
-            <Text className="text-4xl font-pbold ">{percentage}%</Text>
-            <Text className="text-xl font-psemibold"> of Monthly budget left</Text>
+            <Text className="text-4xl font-pbold text-black font-bold ">
+                {percentage}%
+            </Text>
+            <Text className="text-xl font-psemibold text-black">
+                {" "}
+                of Monthly budget left
+            </Text>
         </View>
     );
 };
