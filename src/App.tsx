@@ -91,35 +91,107 @@ function GroupCollection() {
 }
 
 const Tab = createBottomTabNavigator();
+const TabIcon = ({icon, color, name, focused}: any) => {
+    return (
+        <View className="flex items-center justify-center gap-2">
+            <Image
+                source={icon}
+                resizeMode="contain"
+                tintColor={color}
+                className="w-5 h-5"
+            />
+            <Text
+                className={`${focused ? "font-psemibold" : "font-pregular"} text-xs`}
+                style={{color: color}}>
+                {name}
+            </Text>
+        </View>
+    );
+};
 
 function GroupTabs({route}: any) {
     const {groupId} = route.params;
 
     return (
-        <Tab.Navigator initialRouteName="Dashboard">
+        <Tab.Navigator
+            initialRouteName="Dashboard"
+            screenOptions={{
+                tabBarActiveTintColor: "#FFA001",
+                tabBarInactiveTintColor: "#CDCDE0",
+                tabBarShowLabel: false,
+                tabBarStyle: {
+                    backgroundColor: "#161622",
+                    borderTopWidth: 1,
+                    borderTopColor: "#232533",
+                    height: 84,
+                },
+            }}>
             <Tab.Screen
                 name="Dashboard"
                 component={DashBoard}
                 initialParams={{groupId}}
-                options={{headerShown: false}}
+                options={{
+                    headerShown: false,
+                    tabBarIcon: ({color, focused}) => (
+                        <TabIcon
+                            icon={icons.home}
+                            color={color}
+                            name="dashBoard"
+                            focused={focused}
+                        />
+                    ),
+                }}
             />
             <Tab.Screen
                 name="Budget"
                 component={Budget}
                 initialParams={{groupId}}
-                options={{headerShown: false}}
+                options={{
+                    title: "budget",
+                    headerShown: false,
+                    tabBarIcon: ({color, focused}) => (
+                        <TabIcon
+                            icon={icons.walletBuyer}
+                            color={color}
+                            name="budget"
+                            focused={focused}
+                        />
+                    ),
+                }}
             />
             <Tab.Screen
                 name="Create"
                 component={Create}
                 initialParams={{groupId}}
-                options={{headerShown: false}}
+                options={{
+                    title: "Create Transaction",
+                    headerShown: false,
+                    tabBarIcon: ({color, focused}) => (
+                        <TabIcon
+                            icon={icons.plus}
+                            color={color}
+                            name="create"
+                            focused={focused}
+                        />
+                    ),
+                }}
             />
             <Tab.Screen
                 name="Analysis"
                 component={Analysis}
                 initialParams={{groupId}}
-                options={{headerShown: false}}
+                options={{
+                    title: "analysis",
+                    headerShown: false,
+                    tabBarIcon: ({color, focused}) => (
+                        <TabIcon
+                            icon={icons.search}
+                            color={color}
+                            name="analysis"
+                            focused={focused}
+                        />
+                    ),
+                }}
             />
         </Tab.Navigator>
     );
