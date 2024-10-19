@@ -46,6 +46,28 @@ const Friends = () => {
 
     return (
         <SafeAreaView className="bg-primary h-full">
+            <View className="w-full flex items-center justify-center mt-5">
+                <FormField
+                    title="Email"
+                    value={userEmail}
+                    handleChangeText={(e: any) => setUserEmail(e)}
+                    // onChangeText={setUserEmail}
+                    placeholder="Email"
+                    autoCapitalize="none"
+                />
+                <CustomButton
+                    title="Add Friend"
+                    handlePress={() => {
+                        addFriend({addFriend: userEmail});
+                    }}
+                    containerStyles="w-[90%] mt-7"
+                />
+            </View>
+            {friends.length > 0 ? (
+                <View className="mt-4 ml-1 mb-2">
+                    <Text className="text-xl text-white font-bold">All Friends</Text>
+                </View>
+            ) : null}
             <FlatList
                 data={friends}
                 renderItem={({item}: {item: FriendsProps}) => (
@@ -54,27 +76,10 @@ const Friends = () => {
                             <Text className="text-base text-gray-100 font-pmedium">
                                 {item.friend.name}
                             </Text>
-                            <Text className="text-base text-gray-100 font-pmedium">
+                            <Text className="text-base text-gray-100 font-pmedium mr-5">
                                 {item.friend.email}
                             </Text>
                         </View>
-                    </View>
-                )}
-                ListFooterComponent={() => (
-                    <View className="w-full flex items-center justify-center mt-5">
-                        <FormField
-                            title="Email"
-                            value={userEmail}
-                            onChangeText={setUserEmail}
-                            placeholder="Email"
-                        />
-                        <CustomButton
-                            title="Add Friend"
-                            handlePress={() => {
-                                addFriend({addFriend: userEmail});
-                            }}
-                            containerStyles="w-[90%] mt-7"
-                        />
                     </View>
                 )}
             />
