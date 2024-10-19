@@ -1,12 +1,12 @@
-import { View, Text } from "react-native";
-import React, { useEffect, useState } from "react";
-import { useLazyGetUserQuery } from "@/api/user";
+import {View, Text} from "react-native";
+import React, {useEffect, useState} from "react";
+import {useLazyGetUserQuery} from "../api/user";
 
-const MonthPercent = ({ styles, groupId }: any) => {
+const MonthPercent = ({styles, groupId}: any) => {
     const containerStyle = {
         backgroundColor: "#f5bace",
     };
-    const [getUser, { data: userInformation, error }] = useLazyGetUserQuery();
+    const [getUser, {data: userInformation, error}] = useLazyGetUserQuery();
     const [percentage, setPercentage] = useState<number>(0);
     useEffect(() => {
         getUser(groupId);

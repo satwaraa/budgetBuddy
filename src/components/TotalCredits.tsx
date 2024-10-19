@@ -1,12 +1,12 @@
-import { View, Text } from "react-native";
-import React, { useEffect, useState } from "react";
-import { useLazyGetUserQuery } from "@/api/user";
+import {View, Text} from "react-native";
+import React, {useEffect, useState} from "react";
+import {useLazyGetUserQuery} from "../api/user";
 
-const TotalCredits = ({ styles, groupId }: any) => {
+const TotalCredits = ({styles, groupId}: any) => {
     const containerStyle = {
         backgroundColor: "#b6e8de",
     };
-    const [getUser, { data: userInformation, error }] = useLazyGetUserQuery();
+    const [getUser, {data: userInformation, error}] = useLazyGetUserQuery();
     const [totalAmount, setTotalAmount] = useState<number>(0);
     useEffect(() => {
         getUser(groupId);

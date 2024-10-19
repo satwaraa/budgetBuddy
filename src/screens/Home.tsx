@@ -9,14 +9,14 @@ import SplashScreen from "react-native-splash-screen";
 
 type HomeProps = NativeStackNavigationProp<RootStackParamList, "Home">;
 const Home = ({navigation}: any) => {
-    const [sayHello, {data, error, isSuccess}] = useSayHelloMutation();
+    const [sayHello, {data, isError, isLoading, isSuccess}] = useSayHelloMutation();
     useEffect(() => {
         sayHello("");
     }, []);
 
     useEffect(() => {
         // @ts-ignore
-        if (error && error.status == 401) {
+        if (isError && isError.status == 401) {
             navigation.navigate("Login");
             SplashScreen.hide();
             // SplashScreen.hideAsync();
@@ -25,7 +25,7 @@ const Home = ({navigation}: any) => {
             navigation.navigate("GroupCollection");
             // router.replace("/group")
         }
-    }, [error, isSuccess]);
+    }, [isError, isLoading, isSuccess]);
 
     return (
         <SafeAreaView className="bg-primary h-full">

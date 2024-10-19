@@ -1,19 +1,21 @@
-import { View, Text, StyleSheet } from "react-native";
+import {View, Text, StyleSheet} from "react-native";
 
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
 import FormField from "./FormField";
 import CustomButton from "./CustomButton";
+import {useNavigation} from "@react-navigation/native";
 
-import { Href, router } from "expo-router";
-import { useSetCategoryMutation } from "@/api/user";
+import {useSetCategoryMutation} from "../api/user";
 
 interface CategoryType {
     groupId: string;
     name: string;
     maxAmount: string;
 }
-const AddCategory = ({ groupId }: { groupId: any }) => {
+const AddCategory = ({groupId}: {groupId: any}) => {
+    const navigation = useNavigation();
+
     const [form, setForm] = useState<CategoryType>({
         groupId: groupId,
         name: "",
@@ -25,15 +27,19 @@ const AddCategory = ({ groupId }: { groupId: any }) => {
     };
     const [
         setCategory,
-        { data: setCategoryData, error: setCategoryError, isSuccess: setCategorySuccess },
+        {data: setCategoryData, error: setCategoryError, isSuccess: setCategorySuccess},
     ] = useSetCategoryMutation();
 
     const submit_form = async () => {
         if (form.name != "" && form.maxAmount != "") {
+            console.log(form);
+
             setCategory(form);
         }
     };
     useEffect(() => {
+        console.log(setCategorySuccess, setCategoryError, setCategoryData);
+
         if (setCategorySuccess) {
             setForm({
                 groupId: groupId,
@@ -41,7 +47,8 @@ const AddCategory = ({ groupId }: { groupId: any }) => {
                 maxAmount: "",
             });
 
-            router.push(`/group/${groupId}/budget` as Href<"/group/${string}/budget">);
+            navigation.navigate("Budget", {groupId});
+            // router.push(`/group/${groupId}/budget` as Href<"/group/${string}/budget">);
         }
     }, [setCategorySuccess, setCategoryError]);
 
@@ -52,7 +59,7 @@ const AddCategory = ({ groupId }: { groupId: any }) => {
                 <FormField
                     title="Name"
                     value={form.name}
-                    handleChangeText={(e: any) => setForm({ ...form, name: e })}
+                    handleChangeText={(e: any) => setForm({...form, name: e})}
                     placeholder="Name"
                 />
             </View>
@@ -60,7 +67,7 @@ const AddCategory = ({ groupId }: { groupId: any }) => {
                 <FormField
                     title="Max Amount"
                     value={form.maxAmount}
-                    handleChangeText={(e: any) => setForm({ ...form, maxAmount: e })}
+                    handleChangeText={(e: any) => setForm({...form, maxAmount: e})}
                     placeholder="Max Amount"
                 />
             </View>

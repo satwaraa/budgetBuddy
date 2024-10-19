@@ -1,8 +1,8 @@
-import { View, Text } from "react-native";
-import React, { useEffect, useState } from "react";
-import { useLazyGetUserQuery } from "@/api/user";
+import {View, Text} from "react-native";
+import React, {useEffect, useState} from "react";
+import {useLazyGetUserQuery} from "../api/user";
 
-const DaysLeft = ({ styles, groupId }: any) => {
+const DaysLeft = ({styles, groupId}: any) => {
     const containerStyle = {
         backgroundColor: "#b2e5ff",
     };
@@ -20,7 +20,7 @@ const DaysLeft = ({ styles, groupId }: any) => {
 
     const daysRemaining = daysLeftInMonth();
 
-    const [getUser, { data: userInformation, error }] = useLazyGetUserQuery();
+    const [getUser, {data: userInformation, error}] = useLazyGetUserQuery();
     const [moneyLeft, setMoneyLeft] = useState<number>(0);
     useEffect(() => {
         getUser(groupId);
@@ -39,8 +39,7 @@ const DaysLeft = ({ styles, groupId }: any) => {
     return (
         <View
             className={`${styles} items-center justify-center  `}
-            style={containerStyle}
-        >
+            style={containerStyle}>
             <Text className="font-bold text-4xl  ">Rs.{moneyLeft}</Text>
             <Text className="font-psemibold text-xl "> Left for</Text>
             <Text className="font-bold text-4xl">{daysRemaining} Days.</Text>

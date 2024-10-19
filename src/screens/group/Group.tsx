@@ -49,7 +49,15 @@ const Group = ({navigation}: any) => {
     }, []);
     useEffect(() => {
         if (groupData) {
-            SplashScreen.hide();
+            console.log(groupData);
+
+            if (!groupLoding && groupSuccess) {
+                SplashScreen.hide();
+            }
+            if (groupError) {
+                console.log(groupData);
+                console.log(groupError);
+            }
         }
     }, [groupData]);
 
@@ -62,10 +70,7 @@ const Group = ({navigation}: any) => {
         <SafeAreaView className="bg-primary h-full">
             {groupData?.length > 0 ? (
                 <View>
-                    <Text className="text-white font-psemibold text-4xl pl-2">
-                        {" "}
-                        Groups
-                    </Text>
+                    <Text className="text-white font-psemibold text-4xl pl-2"> </Text>
                 </View>
             ) : (
                 <View className="pl-2">
@@ -83,13 +88,16 @@ const Group = ({navigation}: any) => {
                     return (
                         <TouchableOpacity
                             onPress={() => {
+                                // navigation.navigate(`/`);
                                 // TODO:  fix navigation
                                 // router.push(`/group/${item.group.id}`);
+                                const groupId = item.group.id;
+                                navigation.navigate("GroupTabs", {groupId});
                             }}>
                             <View
                                 className="h-20 w-[95%] rounded-lg  m-2 border  p-2 flex justify-center"
                                 style={containerStyle}>
-                                <Text className="font-psemibold text-3xl">
+                                <Text className="font-psemibold text-3xl text-black-100">
                                     {item.group.name}
                                 </Text>
                             </View>
