@@ -97,11 +97,8 @@ const CreateTransaction = ({groupId}: {groupId: string}) => {
             });
             selectedCategory = "";
             selectedTransactionOwner = "";
+
             navigation.navigate("Dashboard", {groupId});
-            // TODO: push to dashboard
-            // router.push(
-            //     `/group/${groupId}/dashBoard` as Href<"/group/${string}/dashBoard">,
-            // );
         }
     }, [TransactionError, TransactionSuccess]);
 

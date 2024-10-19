@@ -4,7 +4,7 @@ import {SafeAreaView} from "react-native-safe-area-context";
 import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
 import {useAddFriendMutation, useLazyGetFriendsQuery} from "../../api/user";
-import {FlatList, Text, View} from "react-native";
+import {FlatList, Text, View, Alert} from "react-native";
 
 interface FriendsProps {
     friend: {
@@ -36,10 +36,10 @@ const Friends = () => {
 
     useEffect(() => {
         if (error) {
-            alert("User not found");
+            Alert.alert("User not found");
         }
         if (isSuccess) {
-            alert("Friend Added");
+            Alert.alert("Friend Added");
             setUserEmail("");
         }
     }, [data, error, isSuccess]);
