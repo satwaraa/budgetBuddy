@@ -6,6 +6,7 @@ import {SafeAreaView} from "react-native-safe-area-context";
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 
 import SplashScreen from "react-native-splash-screen";
+import {CommonActions} from "@react-navigation/native";
 
 const Home = ({navigation}: any) => {
     const [sayHello, {data, error, isLoading, isSuccess}] = useSayHelloMutation();
@@ -14,17 +15,18 @@ const Home = ({navigation}: any) => {
     }, []);
 
     useEffect(() => {
-        console.log(error, isLoading, isSuccess, data);
-
         // @ts-ignore
         if (error && error.status == 401) {
             navigation.navigate("Login");
             SplashScreen.hide();
-            // SplashScreen.hideAsync();
         }
         if (isSuccess) {
-            navigation.navigate("GroupCollection");
-            // router.replace("/group")
+            navigation.dispatch(
+                CommonActions.reset({
+                    index: 0,
+                    routes: [{name: "GroupCollection"}],
+                }),
+            );
         }
     }, [error, isLoading, isSuccess]);
 
