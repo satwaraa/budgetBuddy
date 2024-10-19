@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {useLazyGetUserQuery, useRefreshMutation} from "../../../api/user";
 import {icons} from "../../../constants";
+import {useRoute} from "@react-navigation/native";
 // import {useGlobalSearchParams} from "expo-router";
 
 interface userInfo {
@@ -16,7 +17,7 @@ interface userInfo {
 const Analysis = () => {
     const [refresh] = useRefreshMutation();
     const [refreshing, setRefreshing] = useState(false);
-    // const glob = useGlobalSearchParams();
+
     const onRefresh = async () => {
         setRefreshing(true);
         await refresh("");
@@ -27,9 +28,12 @@ const Analysis = () => {
     const containerStyle = {
         backgroundColor: "#ffdc73",
     };
-    // useEffect(() => {
-    //     getUser(glob.groupId);
-    // }, [glob.groupId]);
+
+    const route = useRoute();
+    const {groupId}: any = route.params;
+    useEffect(() => {
+        getUser(groupId);
+    }, [groupId]);
 
     useEffect(() => {
         if (users) {
@@ -49,24 +53,24 @@ const Analysis = () => {
                             />
                         </View>
                         <View className=" w-[30%] ">
-                            <Text className="text-base font-psemibold">
+                            <Text className="font-psemibold text-black text-lg font-bold">
                                 {element.user.name}
                             </Text>
                         </View>
                         <View className=" flex-1 ">
                             <View className="flex-row items-center">
-                                <Text className="text-base font-psemibold ">
+                                <Text className="text-base font-psemibold  text-gray-700 ">
                                     Budget {"  "}
                                 </Text>
-                                <Text className="text-base text-right font-pregular  flex-1 ml-2">
+                                <Text className="text-base text-right font-pregular  flex-1 ml-2 font-bold text-black">
                                     {stringAmount}
                                 </Text>
                             </View>
                             <View className="flex-row">
-                                <Text className="text-base font-psemibold">
+                                <Text className="text-base font-psemibold text-gray-700 ">
                                     Remaining {"  "}
                                 </Text>
-                                <Text className="text-base text-right font-pregular flex-1 ml-2">
+                                <Text className="text-base text-right font-pregular flex-1 ml-2 text-black font-bold">
                                     {remainingAmount}
                                 </Text>
                             </View>
