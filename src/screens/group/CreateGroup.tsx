@@ -35,12 +35,7 @@ const CreateGroup = ({navigation}: any) => {
     }, []);
 
     useEffect(() => {
-        if (isLoading) {
-            console.log(isLoading);
-        }
         if (groupSuccess) {
-            console.log(groupData);
-
             setUserBudget(0);
             setSelectedFriends([]);
             // router.push("/group");

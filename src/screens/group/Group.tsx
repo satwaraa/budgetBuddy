@@ -49,14 +49,8 @@ const Group = ({navigation}: any) => {
     }, []);
     useEffect(() => {
         if (groupData) {
-            console.log(groupData);
-
             if (!groupLoding && groupSuccess) {
                 SplashScreen.hide();
-            }
-            if (groupError) {
-                console.log(groupData);
-                console.log(groupError);
             }
         }
     }, [groupData]);

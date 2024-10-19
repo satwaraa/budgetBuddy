@@ -81,8 +81,6 @@ const CreateTransaction = ({groupId}: {groupId: string}) => {
             form.transactionOwner != "" &&
             form.amount != ""
         ) {
-            console.log("trying to add transaction.");
-
             addTransaction(form);
         }
     };

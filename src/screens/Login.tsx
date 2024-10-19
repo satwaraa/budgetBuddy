@@ -30,7 +30,6 @@ const LogIn = ({navigation}: any) => {
             }
         }
         if (loginSuccess) {
-            console.log(loginData);
             navigation.navigate("GroupCollection");
             // router.push("/group");
         }

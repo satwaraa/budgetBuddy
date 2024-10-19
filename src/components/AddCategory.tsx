@@ -32,14 +32,10 @@ const AddCategory = ({groupId}: {groupId: any}) => {
 
     const submit_form = async () => {
         if (form.name != "" && form.maxAmount != "") {
-            console.log(form);
-
             setCategory(form);
         }
     };
     useEffect(() => {
-        console.log(setCategorySuccess, setCategoryError, setCategoryData);
-
         if (setCategorySuccess) {
             setForm({
                 groupId: groupId,
