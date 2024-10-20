@@ -81,7 +81,7 @@ const CreateGroup = ({navigation}: any) => {
                                 </Text>
 
                                 <TextInput
-                                    className="flex-1 text-white font-psemibold  ml-10 text-base"
+                                    className="flex-1 text-white font-psemibold  ml-10 text-base h-10 w-10"
                                     value={+userBudget > 0 ? userBudget.toString() : ""}
                                     placeholder={"Enter Budget ₹"}
                                     placeholderTextColor="#7B7B8B"
