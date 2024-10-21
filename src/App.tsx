@@ -1,5 +1,5 @@
 import {View, Text, Button, Image} from "react-native";
-import React from "react";
+import React, {PropsWithChildren} from "react";
 import {NavigationContainer, useNavigation} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import Home from "./screens/Home.tsx";
@@ -16,77 +16,110 @@ import Create from "./screens/group/groupId/Create.tsx";
 import DashBoard from "./screens/group/groupId/DashBoard.tsx";
 import {RootStackParamList} from "./index";
 import Friends from "./screens/group/Friends.tsx";
-import {SafeAreaView} from "react-native-safe-area-context";
-import icons from "./constants/icons.js";
 
+import icons from "./constants/icons.js";
+import Settings from "./screens/group/Settings.tsx";
+import CustomDrawer from "./components/CustomDrawer.tsx";
+import Icon from "react-native-vector-icons/FontAwesome";
+import Ionicons from "react-native-vector-icons/Ionicons";
+
+type IconProps = PropsWithChildren<{
+    name: string;
+}>;
 const Drawer = createDrawerNavigator();
 
 function GroupCollection() {
     return (
-        <View style={{flex: 1}}>
-            <Drawer.Navigator
-                initialRouteName="Group"
-                screenOptions={{
-                    drawerStyle: {
+        <Drawer.Navigator
+            drawerContent={props => <CustomDrawer {...props} />}
+            initialRouteName="Group"
+            screenOptions={{
+                drawerStyle: {
+                    backgroundColor: "#161622",
+                },
+
+                drawerActiveBackgroundColor: "#161622",
+                drawerActiveTintColor: "#FF9C01",
+                drawerInactiveTintColor: "#fff",
+                drawerLabelStyle: {
+                    fontSize: 20,
+                    gap: 0,
+                    padding: 0,
+                    margin: 0,
+                },
+            }}>
+            <Drawer.Screen
+                name="Group"
+                component={Group}
+                options={{
+                    title: "Home",
+                    headerShown: true,
+                    headerStyle: {
                         backgroundColor: "#161622",
+                        shadowOpacity: 0,
+                        borderBottomWidth: 0,
+                        elevation: 0,
                     },
-                    drawerActiveBackgroundColor: "#161622",
-                    drawerActiveTintColor: "#FF9C01",
-                    drawerInactiveTintColor: "#fff",
-                    drawerLabelStyle: {
-                        fontSize: 20,
-                        gap: 0,
-                        padding: 0,
-                        margin: 0,
+                    headerTintColor: "#fff",
+                    drawerIcon: ({color}) => <Icon name="home" size={26} color={color} />,
+                }}
+            />
+            <Drawer.Screen
+                name="CreateGroup"
+                component={CreateGroup}
+                options={{
+                    title: "Create Group",
+                    headerShown: true,
+                    headerStyle: {
+                        backgroundColor: "#161622",
+                        shadowOpacity: 0,
+                        borderBottomWidth: 0,
+                        elevation: 0,
                     },
-                }}>
-                <Drawer.Screen
-                    name="Group"
-                    component={Group}
-                    options={{
-                        title: "Home",
-                        headerShown: true,
-                        headerStyle: {
-                            backgroundColor: "#161622",
-                            shadowOpacity: 0,
-                            borderBottomWidth: 0,
-                            elevation: 0,
-                        },
-                        headerTintColor: "#fff",
-                    }}
-                />
-                <Drawer.Screen
-                    name="CreateGroup"
-                    component={CreateGroup}
-                    options={{
-                        title: "Create Group",
-                        headerShown: true,
-                        headerStyle: {
-                            backgroundColor: "#161622",
-                            shadowOpacity: 0,
-                            borderBottomWidth: 0,
-                            elevation: 0,
-                        },
-                        headerTintColor: "#fff",
-                    }}
-                />
-                <Drawer.Screen
-                    name="Friends"
-                    component={Friends}
-                    options={{
-                        title: "Friends",
-                        headerShown: true,
-                        headerStyle: {
-                            backgroundColor: "#161622",
-                            shadowOpacity: 0,
-                            borderBottomWidth: 0,
-                            elevation: 0,
-                        },
-                        headerTintColor: "#fff",
-                    }}
-                />
-            </Drawer.Navigator>
-        </View>
+                    headerTintColor: "#fff",
+                    drawerIcon: ({color}) => (
+                        <Ionicons name="people" size={26} color={color} />
+                    ),
+                }}
+            />
+            <Drawer.Screen
+                name="Friends"
+                component={Friends}
+                options={{
+                    title: "Friends",
+                    headerShown: true,
+                    headerStyle: {
+                        backgroundColor: "#161622",
+                        shadowOpacity: 0,
+                        borderBottomWidth: 0,
+                        elevation: 0,
+                    },
+                    headerTintColor: "#fff",
+
+                    drawerIcon: ({color}) => (
+                        <Ionicons name="person-add" size={26} color={color} />
+                    ),
+                }}
+            />
+            <Drawer.Screen
+                name="Settings"
+                component={Settings}
+                options={{
+                    title: "Settings",
+                    headerShown: true,
+                    headerStyle: {
+                        backgroundColor: "#161622",
+                        shadowOpacity: 0,
+                        borderBottomWidth: 0,
+                        elevation: 0,
+                    },
+                    headerTintColor: "#fff",
+                    drawerIcon: ({color}) => (
+                        <Ionicons name="settings" size={26} color={"#fff"} />
+                    ),
+                }}
+            />
+        </Drawer.Navigator>
     );
 }
 

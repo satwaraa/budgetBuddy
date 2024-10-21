@@ -5,6 +5,7 @@ import CustomButton from "../components/CustomButton";
 
 import {useLoginMutation} from "../api/user";
 import FormField from "../components/FormField";
+import {CommonActions} from "@react-navigation/native";
 
 interface logInInfo {
     email: string;
@@ -30,8 +31,12 @@ const LogIn = ({navigation}: any) => {
             }
         }
         if (loginSuccess) {
-            navigation.navigate("GroupCollection");
-            // router.push("/group");
+            navigation.dispatch(
+                CommonActions.reset({
+                    index: 0,
+                    routes: [{name: "GroupCollection"}],
+                }),
+            );
         }
     }, [loginError, loginData, loginSuccess]);
 
