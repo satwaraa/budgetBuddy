@@ -1,8 +1,8 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import AsyncStorage  from '@react-native-async-storage/async-storage';
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-
-const baseUrl = "https://budgetbuddy-backend-next.vercel.app/api";
+// const baseUrl = "https://budgetbuddy-backend-next.vercel.app/api";
+const baseUrl = "http://192.168.158.203:8080/api";
 export const userApi = createApi({
     reducerPath: "userApi",
     baseQuery: fetchBaseQuery({
@@ -22,67 +22,67 @@ export const userApi = createApi({
         },
     }),
     tagTypes: ["globalTypes", "refresh", "category", "groups"],
-    endpoints: (builder) => ({
+    endpoints: builder => ({
         login: builder.mutation({
             query: (credentials: any) => ({
                 url: "/login",
                 method: "POST",
-                body: { ...credentials },
+                body: {...credentials},
             }),
         }),
         signup: builder.mutation({
-            query: (Credentials) => ({
+            query: Credentials => ({
                 url: "/signUp",
                 method: "POST",
-                body: { ...Credentials },
+                body: {...Credentials},
             }),
         }),
         sayHello: builder.mutation({
-            query: (body) => ({
+            query: body => ({
                 url: "/sayHello",
                 method: "GET",
                 body: body,
             }),
         }),
         getTransaction: builder.query({
-            query: (groupId) => ({
+            query: groupId => ({
                 url: `/getTransaction/${groupId}`,
                 method: "GET",
             }),
             providesTags: ["globalTypes", "refresh"],
         }),
         setTransaction: builder.mutation({
-            query: (body) => ({
+            query: body => ({
                 url: "/setTransaction",
                 method: "POST",
-                body: { addTransaction: body },
+                body: {addTransaction: body},
             }),
             invalidatesTags: ["globalTypes"],
         }),
         getUser: builder.query({
-            query: (groupId) => ({
+            query: groupId => ({
                 url: `/getUser/${groupId}`,
                 method: "GET",
             }),
             providesTags: ["globalTypes", "refresh"],
         }),
         getCategory: builder.query({
-            query: (groupId) => ({
+            query: groupId => ({
                 url: `/getCategory/${groupId}`,
                 method: "GET",
             }),
             providesTags: ["category", "refresh"],
         }),
         setCategory: builder.mutation({
-            query: (body) => ({
+            query: body => ({
                 url: "/setCategory/",
                 method: "POST",
-                body: { setCategory: body },
+                body: {setCategory: body},
             }),
             invalidatesTags: ["category"],
         }),
         refresh: builder.mutation({
-            query: (body) => ({
+            query: body => ({
                 url: "/refresh",
                 method: "POST",
                 body: body,
@@ -90,7 +90,7 @@ export const userApi = createApi({
             invalidatesTags: ["refresh"],
         }),
         logout: builder.mutation({
-            query: (body) => ({
+            query: body => ({
                 url: "/logout",
                 method: "POST",
                 body: body,
@@ -104,7 +104,7 @@ export const userApi = createApi({
             providesTags: ["groups", "refresh"],
         }),
         createGroup: builder.mutation({
-            query: (body) => ({
+            query: body => ({
                 url: "/createGroup",
                 method: "POST",
                 body: body,
@@ -112,7 +112,7 @@ export const userApi = createApi({
             invalidatesTags: ["groups"],
         }),
         addFriend: builder.mutation({
-            query: (body) => ({
+            query: body => ({
                 url: "/addFriend",
                 method: "POST",
                 body: body,
@@ -121,6 +121,18 @@ export const userApi = createApi({
         getFriends: builder.query({
             query: () => ({
                 url: "/getFriends",
+                method: "GET",
+            }),
+        }),
+        whoAmI: builder.query({
+            query: () => ({
+                url: "/whoAmI",
+                method: "GET",
+            }),
+        }),
+        resetGroup: builder.query({
+            query: groupId => ({
+                url: `/resetGroup/${groupId}`,
                 method: "GET",
             }),
         }),
@@ -142,4 +154,6 @@ export const {
     useCreateGroupMutation,
     useAddFriendMutation,
     useLazyGetFriendsQuery,
+    useLazyWhoAmIQuery,
+    useLazyResetGroupQuery,
 } = userApi;

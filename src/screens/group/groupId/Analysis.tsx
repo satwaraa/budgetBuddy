@@ -1,9 +1,14 @@
 import {View, Text, FlatList, Image, RefreshControl} from "react-native";
 import React, {useEffect, useState} from "react";
 import {SafeAreaView} from "react-native-safe-area-context";
-import {useLazyGetUserQuery, useRefreshMutation} from "../../../api/user";
+import {
+    useLazyGetUserQuery,
+    useLazyResetGroupQuery,
+    useRefreshMutation,
+} from "../../../api/user";
 import {icons} from "../../../constants";
 import {useRoute} from "@react-navigation/native";
+import CustomButton from "../../../components/CustomButton";
 // import {useGlobalSearchParams} from "expo-router";
 
 interface userInfo {
@@ -17,6 +22,7 @@ interface userInfo {
 const Analysis = () => {
     const [refresh] = useRefreshMutation();
     const [refreshing, setRefreshing] = useState(false);
+    const [resetGroup, {data, isLoading, error, isSuccess}] = useLazyResetGroupQuery();
 
     const onRefresh = async () => {
         setRefreshing(true);
@@ -34,6 +40,15 @@ const Analysis = () => {
     useEffect(() => {
         getUser(groupId);
     }, [groupId]);
+    useEffect(() => {
+        console.log(data, isLoading, error, isSuccess);
+    }, [data, isLoading, error, isSuccess]);
+
+    const handleReset = () => {
+        if (groupId) {
+            resetGroup(groupId);
+        }
+    };
 
     useEffect(() => {
         if (users) {
@@ -101,6 +116,10 @@ const Analysis = () => {
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                 }
             />
+
+            <View>
+                <CustomButton title="Reset Budget" handlePress={handleReset} />
+            </View>
         </SafeAreaView>
     );
 };

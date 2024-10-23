@@ -1,10 +1,35 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {View, Text, ImageBackground, Image, TouchableOpacity} from "react-native";
 import {DrawerContentScrollView, DrawerItemList} from "@react-navigation/drawer";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
+import {useSelector} from "react-redux";
+import {selectCurrentUser} from "../api/userSlice";
 
 const CustomDrawer = (props: any) => {
+    const [info, setInfo] = useState<{
+        userName: string;
+        email: string;
+        avatar_url: string;
+        name: string;
+    }>({
+        userName: "budgetbuddy",
+        email: "budgetBuddy",
+        avatar_url: "",
+        name: "budgetBuddy",
+    });
+    const userInformation = useSelector(selectCurrentUser);
+    useEffect(() => {
+        if (
+            userInformation.avatar_url === null ||
+            userInformation.avatar_url === undefined
+        ) {
+            setInfo({...userInformation, avatar_url: ""});
+        } else {
+            setInfo(userInformation);
+        }
+    }, [userInformation]);
+
     return (
         <View style={{flex: 1}}>
             <DrawerContentScrollView
@@ -15,15 +40,27 @@ const CustomDrawer = (props: any) => {
                     source={require("../assets/images/menu-bg.png")}
                     style={{padding: 20}}>
                     <View className="flex  justify-evenly items-center">
-                        <Image
-                            source={require("../assets/images/user-profile.jpg")}
-                            style={{
-                                height: 80,
-                                width: 80,
-                                borderRadius: 40,
-                                marginBottom: 10,
-                            }}
-                        />
+                        {info.avatar_url === "" ? (
+                            <Image
+                                source={require("../assets/images/user-profile.jpg")}
+                                style={{
+                                    height: 80,
+                                    width: 80,
+                                    borderRadius: 40,
+                                    marginBottom: 10,
+                                }}
+                            />
+                        ) : (
+                            <Image
+                                source={{uri: info.avatar_url}}
+                                style={{
+                                    height: 80,
+                                    width: 80,
+                                    borderRadius: 40,
+                                    marginBottom: 10,
+                                }}
+                            />
+                        )}
                         <Text
                             className=" font-bold text-xl"
                             style={{
@@ -32,7 +69,7 @@ const CustomDrawer = (props: any) => {
                                 fontFamily: "Roboto-Medium",
                                 marginBottom: 5,
                             }}>
-                            John Doe
+                            {info.userName}
                         </Text>
                     </View>
                 </ImageBackground>

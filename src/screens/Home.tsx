@@ -1,4 +1,4 @@
-import {useSayHelloMutation} from "../api/user";
+import {useLazyWhoAmIQuery, useSayHelloMutation} from "../api/user";
 import CustomButton from "../components/CustomButton";
 import {useEffect} from "react";
 import {View, Text} from "react-native";
@@ -7,14 +7,44 @@ import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 
 import SplashScreen from "react-native-splash-screen";
 import {CommonActions} from "@react-navigation/native";
+import {useDispatch} from "react-redux";
+import {setUserInfomation} from "../api/userSlice";
+interface userInformation {
+    userInformation: {
+        id: string;
+        name: string;
+        email: string;
+        userName: string;
+        avatar_url: string;
+    };
+}
 
 const Home = ({navigation}: any) => {
-    const [sayHello, {data, error, isLoading, isSuccess}] = useSayHelloMutation();
+    const dispatch = useDispatch();
+    const [whoAmI, result] = useLazyWhoAmIQuery();
+    const {
+        data,
+        error,
+        isLoading,
+        isSuccess,
+    }: {
+        data?: userInformation;
+        error?: any;
+        isLoading: boolean;
+        isSuccess: boolean;
+    } = result;
+
     useEffect(() => {
-        sayHello("");
+        whoAmI("");
     }, []);
 
     useEffect(() => {
+        console.log(error, isLoading, isSuccess);
+
+        if (data?.userInformation) {
+            dispatch(setUserInfomation(data.userInformation));
+        }
+
         // @ts-ignore
         if (error && error.status == 401) {
             navigation.navigate("Login");
