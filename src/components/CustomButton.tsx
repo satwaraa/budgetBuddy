@@ -1,5 +1,6 @@
 import {ActivityIndicator, Text, TouchableOpacity} from "react-native";
 import LoaderKit from "react-native-loader-kit";
+import BallBeat from "./BallBeat";
 const CustomButton = ({
     title,
     handlePress,
@@ -20,11 +21,7 @@ const CustomButton = ({
                     {title}
                 </Text>
             ) : (
-                <LoaderKit
-                    style={{width: 50, height: 50}}
-                    name={"BallBeat"}
-                    color={"white"}
-                />
+                <BallBeat />
             )}
         </TouchableOpacity>
     );

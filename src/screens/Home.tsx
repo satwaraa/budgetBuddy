@@ -39,8 +39,6 @@ const Home = ({navigation}: any) => {
     }, []);
 
     useEffect(() => {
-        console.log(error, isLoading, isSuccess);
-
         if (data?.userInformation) {
             dispatch(setUserInfomation(data.userInformation));
         }
