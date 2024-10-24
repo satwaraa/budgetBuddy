@@ -40,9 +40,6 @@ const Analysis = () => {
     useEffect(() => {
         getUser(groupId);
     }, [groupId]);
-    useEffect(() => {
-        console.log(data, isLoading, error, isSuccess);
-    }, [data, isLoading, error, isSuccess]);
 
     const handleReset = () => {
         if (groupId) {
@@ -118,7 +115,11 @@ const Analysis = () => {
             />
 
             <View>
-                <CustomButton title="Reset Budget" handlePress={handleReset} />
+                <CustomButton
+                    title="Reset Budget"
+                    handlePress={handleReset}
+                    isLoading={isLoading}
+                />
             </View>
         </SafeAreaView>
     );

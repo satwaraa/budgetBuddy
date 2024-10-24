@@ -17,7 +17,7 @@ interface FriendsProps {
 const Friends = () => {
     const [userEmail, setUserEmail] = useState("");
 
-    const [addFriend, {data, error, isSuccess}] = useAddFriendMutation();
+    const [addFriend, {data, error, isSuccess, isLoading}] = useAddFriendMutation();
     const [friends, setFreinds] = useState([]);
     const [
         getFriends,
@@ -57,6 +57,7 @@ const Friends = () => {
                 />
                 <CustomButton
                     title="Add Friend"
+                    isLoading={isLoading}
                     handlePress={() => {
                         addFriend({addFriend: userEmail});
                     }}

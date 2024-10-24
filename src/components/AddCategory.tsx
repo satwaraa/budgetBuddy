@@ -27,7 +27,12 @@ const AddCategory = ({groupId}: {groupId: any}) => {
     };
     const [
         setCategory,
-        {data: setCategoryData, error: setCategoryError, isSuccess: setCategorySuccess},
+        {
+            data: setCategoryData,
+            error: setCategoryError,
+            isSuccess: setCategorySuccess,
+            isLoading,
+        },
     ] = useSetCategoryMutation();
 
     const submit_form = async () => {
@@ -69,7 +74,11 @@ const AddCategory = ({groupId}: {groupId: any}) => {
             </View>
 
             <View>
-                <CustomButton title="Create" handlePress={submit_form} />
+                <CustomButton
+                    title="Create"
+                    handlePress={submit_form}
+                    isLoading={isLoading}
+                />
             </View>
         </View>
     );

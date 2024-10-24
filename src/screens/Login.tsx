@@ -13,8 +13,10 @@ interface logInInfo {
 }
 
 const LogIn = ({navigation}: any) => {
-    const [logInUser, {data: loginData, error: loginError, isSuccess: loginSuccess}] =
-        useLoginMutation();
+    const [
+        logInUser,
+        {data: loginData, error: loginError, isSuccess: loginSuccess, isLoading},
+    ] = useLoginMutation();
 
     const [form, setForm] = useState<logInInfo>({
         email: "",
@@ -64,6 +66,7 @@ const LogIn = ({navigation}: any) => {
             <View className="justify-center items-center">
                 <CustomButton
                     title="Log In"
+                    isLoading={isLoading}
                     handlePress={() => {
                         if (form.email != "" && form.password != "") {
                             logInUser(form);

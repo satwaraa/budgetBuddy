@@ -34,7 +34,12 @@ const CreateTransaction = ({groupId}: {groupId: string}) => {
     });
     const [
         addTransaction,
-        {data: transactindata, error: TransactionError, isSuccess: TransactionSuccess},
+        {
+            data: transactindata,
+            error: TransactionError,
+            isSuccess: TransactionSuccess,
+            isLoading,
+        },
     ] = useSetTransactionMutation();
     const [allOwners, setAllOwners] = useState<
         {_index: number; value: string; label: string}[]
@@ -162,7 +167,11 @@ const CreateTransaction = ({groupId}: {groupId: string}) => {
                 />
             </View>
             <View>
-                <CustomButton title="Create" handlePress={submit_form} />
+                <CustomButton
+                    title="Create"
+                    handlePress={submit_form}
+                    isLoading={isLoading}
+                />
             </View>
         </View>
     );

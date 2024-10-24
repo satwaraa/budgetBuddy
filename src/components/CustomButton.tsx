@@ -1,5 +1,5 @@
-import { ActivityIndicator, Text, TouchableOpacity } from "react-native";
-
+import {ActivityIndicator, Text, TouchableOpacity} from "react-native";
+import LoaderKit from "react-native-loader-kit";
 const CustomButton = ({
     title,
     handlePress,
@@ -10,22 +10,20 @@ const CustomButton = ({
     return (
         <TouchableOpacity
             onPress={handlePress}
-            activeOpacity={0.7}
             className={`bg-secondary rounded-xl min-h-[55px] flex flex-row justify-center items-center ${containerStyles} ${
                 isLoading ? "opacity-50" : ""
             }`}
-            disabled={isLoading}
-        >
-            <Text className={`text-white font-psemibold text-lg  ${textStyles}`}>
-                {title}
-            </Text>
-
-            {isLoading && (
-                <ActivityIndicator
-                    animating={isLoading}
-                    color="#fff"
-                    size="small"
-                    className="ml-2"
+            style={{opacity: isLoading ? 0.85 : 1}}
+            disabled={isLoading}>
+            {!isLoading ? (
+                <Text className={`text-white font-psemibold text-lg  ${textStyles}`}>
+                    {title}
+                </Text>
+            ) : (
+                <LoaderKit
+                    style={{width: 50, height: 50}}
+                    name={"BallBeat"}
+                    color={"white"}
                 />
             )}
         </TouchableOpacity>

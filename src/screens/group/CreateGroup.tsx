@@ -26,7 +26,7 @@ const CreateGroup = ({navigation}: any) => {
 
     const [availableMembers, setAvailableMembers] = useState<Friend[] | []>([]);
     const [
-        groupInfo,
+        createGroup,
         {data: groupData, error: groupError, isSuccess: groupSuccess, isLoading},
     ] = useCreateGroupMutation();
 
@@ -41,7 +41,7 @@ const CreateGroup = ({navigation}: any) => {
             // router.push("/group");
             navigation.navigate("Group");
         }
-    }, [groupData, groupError, groupSuccess, isLoading]);
+    }, [groupData, groupError, groupSuccess]);
 
     useEffect(() => {
         if (userFreinds) {
@@ -208,6 +208,7 @@ const CreateGroup = ({navigation}: any) => {
                         <CustomButton
                             title="Create Group"
                             containerStyles="w-[97%]"
+                            isLoading={isLoading}
                             handlePress={() => {
                                 const filteredInformation = selectedFriends.map(
                                     (item: Friend) => {
@@ -227,7 +228,7 @@ const CreateGroup = ({navigation}: any) => {
                                     },
                                 };
 
-                                groupInfo(data);
+                                createGroup(data);
                             }}
                         />
                     </View>
