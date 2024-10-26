@@ -1,10 +1,11 @@
-import {View, Text, FlatList, Image, RefreshControl} from "react-native";
+import {View, Text, FlatList, Image, RefreshControl, Alert} from "react-native";
 import React, {useEffect, useState} from "react";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {
     useLazyGetUserQuery,
     useLazyResetGroupQuery,
     useRefreshMutation,
+    useResetGroupMutation,
 } from "../../../api/user";
 import {icons} from "../../../constants";
 import {useRoute} from "@react-navigation/native";
@@ -22,7 +23,7 @@ interface userInfo {
 const Analysis = () => {
     const [refresh] = useRefreshMutation();
     const [refreshing, setRefreshing] = useState(false);
-    const [resetGroup, {data, isLoading, error, isSuccess}] = useLazyResetGroupQuery();
+    const [resetGroup, {data, isLoading, error, isSuccess}] = useResetGroupMutation();
 
     const onRefresh = async () => {
         setRefreshing(true);
@@ -42,9 +43,22 @@ const Analysis = () => {
     }, [groupId]);
 
     const handleReset = () => {
-        if (groupId) {
-            resetGroup(groupId);
-        }
+        Alert.alert(
+            "Confirmation",
+            "All the budget amount and transaction will be reset ?",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Cancelled"),
+                    style: "cancel",
+                },
+                {
+                    text: "OK",
+                    onPress: () => resetGroup(groupId),
+                },
+            ],
+            {cancelable: false},
+        );
     };
 
     useEffect(() => {

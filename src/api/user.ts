@@ -1,8 +1,9 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const baseUrl = "https://budgetbuddy-backend-next.vercel.app/api";
-// const baseUrl = "http://192.168.158.170:8080/api";
+// const baseUrl = "https://budgetbuddy-backend-next.vercel.app/api";
+const baseUrl = "http://192.168.158.205:8080/api";
+
 export const userApi = createApi({
     reducerPath: "userApi",
     baseQuery: fetchBaseQuery({
@@ -71,7 +72,7 @@ export const userApi = createApi({
                 url: `/getCategory/${groupId}`,
                 method: "GET",
             }),
-            providesTags: ["category", "refresh"],
+            providesTags: ["category", "refresh", "globalTypes"],
         }),
         setCategory: builder.mutation({
             query: body => ({
@@ -130,11 +131,13 @@ export const userApi = createApi({
                 method: "GET",
             }),
         }),
-        resetGroup: builder.query({
+        resetGroup: builder.mutation({
             query: groupId => ({
-                url: `/resetGroup/${groupId}`,
-                method: "GET",
+                url: `/resetGroup`,
+                method: "POST",
+                body: {groupId: groupId},
             }),
+            invalidatesTags: ["globalTypes"],
         }),
     }),
 });
@@ -155,5 +158,5 @@ export const {
     useAddFriendMutation,
     useLazyGetFriendsQuery,
     useLazyWhoAmIQuery,
-    useLazyResetGroupQuery,
+    useResetGroupMutation,
 } = userApi;
