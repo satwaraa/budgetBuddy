@@ -6,7 +6,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import {useSelector} from "react-redux";
 import {selectCurrentUser} from "../api/userSlice";
 import {useLogoutMutation} from "../api/user";
-import {CommonActions, StackActions, useNavigation} from "@react-navigation/native";
+import {CommonActions, useNavigation} from "@react-navigation/native";
 import BallBeat from "./BallBeat";
 
 const CustomDrawer = (props: any) => {
@@ -48,8 +48,8 @@ const CustomDrawer = (props: any) => {
         if (logOutSuccess) {
             navigation.dispatch(
                 CommonActions.reset({
-                    index: 0, // Set the active screen to Login
-                    routes: [{name: "Home"}], // Specify Login as the route
+                    index: 0,
+                    routes: [{name: "Home"}],
                 }),
             );
         }
