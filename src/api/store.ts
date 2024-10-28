@@ -25,7 +25,6 @@ const abc = (store: any) => (next: any) => (action: any) => {
     }
     if (action?.payload?.status === 401) {
         removeCreds();
-        // router.push("/logIn");
     }
     next(action);
 };

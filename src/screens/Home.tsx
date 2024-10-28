@@ -45,7 +45,7 @@ const Home = ({navigation}: any) => {
 
         // @ts-ignore
         if (error && error.status == 401) {
-            navigation.navigate("Login");
+            // navigation.navigate("Login");
             SplashScreen.hide();
         }
         if (isSuccess) {

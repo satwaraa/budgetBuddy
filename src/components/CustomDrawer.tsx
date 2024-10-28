@@ -5,6 +5,9 @@ import {DrawerContentScrollView, DrawerItemList} from "@react-navigation/drawer"
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {useSelector} from "react-redux";
 import {selectCurrentUser} from "../api/userSlice";
+import {useLogoutMutation} from "../api/user";
+import {CommonActions, StackActions, useNavigation} from "@react-navigation/native";
+import BallBeat from "./BallBeat";
 
 const CustomDrawer = (props: any) => {
     const [info, setInfo] = useState<{
@@ -29,6 +32,28 @@ const CustomDrawer = (props: any) => {
             setInfo(userInformation);
         }
     }, [userInformation]);
+
+    const [
+        logout,
+        {
+            data: logOutData,
+            error: logOutError,
+            isSuccess: logOutSuccess,
+            isLoading: islogOutLoading,
+        },
+    ] = useLogoutMutation();
+
+    const navigation = useNavigation();
+    useEffect(() => {
+        if (logOutSuccess) {
+            navigation.dispatch(
+                CommonActions.reset({
+                    index: 0, // Set the active screen to Login
+                    routes: [{name: "Home"}], // Specify Login as the route
+                }),
+            );
+        }
+    }, [logOutSuccess]);
 
     return (
         <View style={{flex: 1}}>
@@ -97,18 +122,33 @@ const CustomDrawer = (props: any) => {
                         </Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {}} style={{paddingVertical: 15}}>
-                    <View style={{flexDirection: "row", alignItems: "center"}}>
-                        <Ionicons name="exit" size={22} />
-                        <Text
+                <TouchableOpacity
+                    onPress={() => {
+                        logout("");
+                    }}
+                    style={{paddingVertical: 15}}>
+                    {!islogOutLoading ? (
+                        <View style={{flexDirection: "row", alignItems: "center"}}>
+                            <Ionicons name="exit" size={22} />
+                            <Text
+                                style={{
+                                    fontSize: 15,
+                                    fontFamily: "Roboto-Medium",
+                                    marginLeft: 5,
+                                }}>
+                                Sign Out
+                            </Text>
+                        </View>
+                    ) : (
+                        <View
+                            className="p-2"
                             style={{
-                                fontSize: 15,
-                                fontFamily: "Roboto-Medium",
-                                marginLeft: 5,
+                                flexDirection: "row",
+                                alignItems: "center",
                             }}>
-                            Sign Out
-                        </Text>
-                    </View>
+                            <BallBeat />
+                        </View>
+                    )}
                 </TouchableOpacity>
             </View>
         </View>

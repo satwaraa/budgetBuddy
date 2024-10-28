@@ -28,9 +28,6 @@ const Group = ({navigation}: any) => {
         await refresh("");
         setRefreshing(false);
     };
-
-    const [logout, {data: logOutData, error: logOutError, isSuccess: logOutSuccess}] =
-        useLogoutMutation();
     let [
         getGroups,
         {

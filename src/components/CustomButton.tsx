@@ -1,5 +1,4 @@
-import {ActivityIndicator, Text, TouchableOpacity} from "react-native";
-import LoaderKit from "react-native-loader-kit";
+import {Text, TouchableOpacity} from "react-native";
 import BallBeat from "./BallBeat";
 const CustomButton = ({
     title,

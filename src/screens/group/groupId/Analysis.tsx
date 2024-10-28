@@ -3,14 +3,12 @@ import React, {useEffect, useState} from "react";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {
     useLazyGetUserQuery,
-    useLazyResetGroupQuery,
     useRefreshMutation,
     useResetGroupMutation,
 } from "../../../api/user";
 import {icons} from "../../../constants";
 import {useRoute} from "@react-navigation/native";
 import CustomButton from "../../../components/CustomButton";
-// import {useGlobalSearchParams} from "expo-router";
 
 interface userInfo {
     id: string;
