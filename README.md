@@ -1,79 +1,90 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Budget Buddy
 
-# Getting Started
+**Budget Buddy** is a simple and effective budgeting application designed to help users track their expenses, set budgets, and manage finances effortlessly. With a user-friendly interface and powerful features, Budget Buddy makes financial management accessible to everyone.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Table of Contents
 
-## Step 1: Start the Metro Server
+-   [Features](#features)
+-   [Tech Stack](#tech-stack)
+-   [Getting Started](#getting-started)
+-   [Usage](#usage)
+-   [Contributing](#contributing)
+-   [License](#license)
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+---
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Features
 
-```bash
-# using npm
-npm start
+-   **Expense Tracking**: Record and categorize expenses easily.
+-   **Budget Setting**: Set monthly budgets and get alerts when you’re close to exceeding them.
+-   **Reports & Insights**: Visualize spending trends with charts and reports.
+-   **Cross-Device Sync**: Access your budgets and data from multiple devices.
+-   **Privacy-Focused**: Your data is yours; we prioritize privacy and data security.
 
-# OR using Yarn
-yarn start
-```
+## Tech Stack
 
-## Step 2: Start your Application
+-   **Frontend**: React Native (Expo)
+-   **State Management**: Redux Toolkit with RTK Query
+-   **Backend**: [Backend language and framework if applicable]
+-   **Database**: Prisma with MongoDB using the `withAccelerate` extension
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## Getting Started
 
-### For Android
+### Prerequisites
 
-```bash
-# using npm
-npm run android
+-   Node.js
+-   MongoDB/PostgreSql
 
-# OR using Yarn
-yarn android
-```
+### Installation
 
-### For iOS
+1. **Clone the repository**
 
-```bash
-# using npm
-npm run ios
+    ```bash
+    git clone git@github.com:psyger100/budgetBuddy.git
+    cd budget-buddy
+    ```
 
-# OR using Yarn
-yarn ios
-```
+2. **Install dependencies**
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+    ```bash
+    npm install
+    ```
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+3. **Start the development server**
+    ```bash
+    npx react-native start --reset-cache
+    ```
 
-## Step 3: Modifying your App
+## Usage
 
-Now that you have successfully run the app, let's modify it.
+1. **Log in or Register** to get started.
+2. **Create a Budget** by specifying your monthly or weekly spending limits.
+3. **Add Expenses** to track your spending in various categories.
+4. **View Reports** to see visual breakdowns of your spending habits.
+5. **Sync Across Devices** if you want to use it on both mobile and web.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+## Building the Project for Android
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+To create a production-ready build of the **Budget Buddy** app for Android, follow these steps:
 
-## Congratulations! :tada:
+1. **Bundle the JavaScript code**
+    ```bash
+    bunx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+    ```
+2. **Navigate to the Android directory**
+    ```bash
+    cd android
+    ```
+3. **Assemble the release build**
+    ```bash
+    ./gradlew assembleRelease
+    ```
+    This will generate the release APK file in the android/app/build/outputs/apk/release/ directory. You can then install the APK on an Android device to test the production version of Budget Buddy.
 
-You've successfully run and modified your React Native App. :partying_face:
+## Contributing
 
-### Now what?
+We welcome contributions! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+---
 
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Feel free to reach out if you have any questions or feature requests! Happy budgeting!
