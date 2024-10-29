@@ -90,7 +90,7 @@ const DashBoard = () => {
                         </Text>
                     </View>
                     <View className="flex-row">
-                        <Text className="font-pmedium text-gray-600">User:-</Text>
+                        <Text className="font-pmedium text-gray-600">Paid by:-</Text>
                         <Text className="font-pextrabold font-bold uppercase text-black">
                             {" "}
                             {item.user.name}
@@ -108,15 +108,6 @@ const DashBoard = () => {
                 renderItem={renderItem}
                 ListHeaderComponent={() => (
                     <View>
-                        <View>
-                            <Text className="font-pmedium text-sm text-gray-100">
-                                Welcome Back To
-                            </Text>
-                            <Text className="text-2xl font-psemibold text-secondary-200">
-                                BudgetBuddy
-                            </Text>
-                            <View className="h-5"></View>
-                        </View>
                         <FlatList
                             data={[1]}
                             renderItem={() => (
@@ -138,7 +129,7 @@ const DashBoard = () => {
                             horizontal
                         />
                         <Text className="m-2 font-pbold text-gray-50 text-xl ">
-                            Monthly Transaction
+                            Transactions
                         </Text>
                     </View>
                 )}

@@ -6,6 +6,8 @@ import CustomButton from "../components/CustomButton";
 import {useLoginMutation} from "../api/user";
 import FormField from "../components/FormField";
 import {CommonActions} from "@react-navigation/native";
+import {useDispatch} from "react-redux";
+import {setUserInfomation} from "../api/userSlice";
 
 interface logInInfo {
     email: string;
@@ -13,6 +15,7 @@ interface logInInfo {
 }
 
 const LogIn = ({navigation}: any) => {
+    const dispatch = useDispatch();
     const [
         logInUser,
         {data: loginData, error: loginError, isSuccess: loginSuccess, isLoading},
@@ -24,6 +27,9 @@ const LogIn = ({navigation}: any) => {
     });
 
     useEffect(() => {
+        if (loginData?.userInformation) {
+            dispatch(setUserInfomation(loginData.userInformation));
+        }
         if (loginError) {
             // @ts-ignore
             const status = loginError.status;

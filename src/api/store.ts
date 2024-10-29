@@ -6,7 +6,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const abc = (store: any) => (next: any) => (action: any) => {
     const setCreds = async (name: string, value: string): Promise<void> => {
-        // await AsyncStorage.setItem
         await AsyncStorage.setItem(name, value);
     };
     const removeCreds = async () => {
