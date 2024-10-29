@@ -77,7 +77,7 @@ const LogIn = ({navigation}: any) => {
                         if (form.email != "" && form.password != "") {
                             logInUser(form);
                         } else {
-                            Alert.alert("Warning", "poora likh madarchod");
+                            Alert.alert("Warning", "Email and password required.");
                         }
                     }}
                     containerStyles="w-[90%] mt-7"
