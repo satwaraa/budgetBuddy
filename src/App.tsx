@@ -1,6 +1,6 @@
-import {View, Text, Button, Image} from "react-native";
+import {View, Text, Image} from "react-native";
 import React, {PropsWithChildren} from "react";
-import {NavigationContainer, useNavigation} from "@react-navigation/native";
+import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import Home from "./screens/Home.tsx";
 import {Provider} from "react-redux";
