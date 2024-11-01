@@ -1,7 +1,8 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const baseUrl = "https://budgetbuddy-backend-next.vercel.app/api";
+// const baseUrl = "https://budgetbuddy-backend-next.vercel.app/api";
+const baseUrl = "http://192.168.158.211:8080/api";
 
 export const userApi = createApi({
     reducerPath: "userApi",
@@ -83,7 +84,7 @@ export const userApi = createApi({
         }),
         refresh: builder.mutation({
             query: body => ({
-                url: "/refresh",
+                url: "/whoAmI",
                 method: "POST",
                 body: body,
             }),
@@ -138,6 +139,21 @@ export const userApi = createApi({
             }),
             invalidatesTags: ["globalTypes"],
         }),
+        setAvatar: builder.mutation({
+            query: FormData => ({
+                url: "/setAvatar",
+                method: "POST",
+                body: FormData,
+                formdata: true,
+            }),
+        }),
+        changePassword: builder.mutation({
+            query: body => ({
+                url: "/changePassword",
+                method: "PATCH",
+                body: body,
+            }),
+        }),
     }),
 });
 
@@ -158,4 +174,6 @@ export const {
     useLazyGetFriendsQuery,
     useLazyWhoAmIQuery,
     useResetGroupMutation,
+    useSetAvatarMutation,
+    useChangePasswordMutation,
 } = userApi;

@@ -2,11 +2,7 @@ import {View, Text, TouchableOpacity, FlatList, RefreshControl} from "react-nati
 import React, {useEffect, useState} from "react";
 
 import {SafeAreaView} from "react-native-safe-area-context";
-import {
-    useLazyGetGroupsQuery,
-    useLogoutMutation,
-    useRefreshMutation,
-} from "../../api/user";
+import {useLazyGetGroupsQuery, useRefreshMutation} from "../../api/user";
 
 import CustomButton from "../../components/CustomButton";
 import chooseNonConsecutive from "../../constants/radomColor";
@@ -79,9 +75,6 @@ const Group = ({navigation}: any) => {
                     return (
                         <TouchableOpacity
                             onPress={() => {
-                                // navigation.navigate(`/`);
-                                // TODO:  fix navigation
-                                // router.push(`/group/${item.group.id}`);
                                 const groupId = item.group.id;
                                 navigation.navigate("GroupTabs", {groupId});
                             }}>
@@ -100,10 +93,7 @@ const Group = ({navigation}: any) => {
                         <CustomButton
                             title="Create Group"
                             handlePress={() => {
-                                // TODO: fix navigation
                                 navigation.navigate("CreateGroup");
-
-                                // router.push("/group/createGroup");
                             }}
                             containerStyles="w-[90%] mt-7"
                         />

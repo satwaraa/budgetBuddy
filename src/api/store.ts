@@ -1,10 +1,13 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {userApi} from "./user";
 import {setupListeners} from "@reduxjs/toolkit/query";
-import userInformationReducer from "./userSlice";
+import userInformationReducer, {selectCurrentUser, setUserInfomation} from "./userSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {useSelector} from "react-redux";
 
 const abc = (store: any) => (next: any) => (action: any) => {
+    // console.log("on every action => ", action.payload);
+
     const setCreds = async (name: string, value: string): Promise<void> => {
         await AsyncStorage.setItem(name, value);
     };
@@ -25,7 +28,10 @@ const abc = (store: any) => (next: any) => (action: any) => {
     if (action?.payload?.status === 401) {
         removeCreds();
     }
-    next(action);
+    if (action?.payload?.userInformation) {
+        store.dispatch(setUserInfomation(action?.payload?.userInformation));
+    }
+    return next(action);
 };
 export const store = configureStore({
     reducer: {
