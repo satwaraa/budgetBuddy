@@ -223,7 +223,7 @@ const Settings = () => {
                 ) : (
                     <View className="w-90% mt-10 border border-gray-600 rounded-lg p-2">
                         <TextInput
-                            className="text-2xl border border-b-gray-700 p-0 m-2"
+                            className="text-2xl border border-b-gray-700 p-0 m-2 border-t-0 border-l-0 border-r-0"
                             placeholder="Old Password"
                             onChangeText={e =>
                                 setChangePasswordForm({
@@ -235,7 +235,7 @@ const Settings = () => {
                             placeholderTextColor="#7B7B8B"
                         />
                         <TextInput
-                            className="text-2xl border border-b-gray-700 p-0 m-2"
+                            className="text-2xl border border-b-gray-700 p-0 m-2 border-t-0 border-l-0 border-r-0"
                             placeholder="New password"
                             onChangeText={e =>
                                 setChangePasswordForm({
@@ -247,7 +247,7 @@ const Settings = () => {
                             placeholderTextColor="#7B7B8B"
                         />
                         <TextInput
-                            className="text-2xl border border-b-gray-700 p-0 m-2"
+                            className="text-2xl border border-b-gray-700 p-0 m-2 border-t-0 border-l-0 border-r-0"
                             placeholder="Confirm New Password"
                             onChangeText={e => {
                                 setChangePasswordForm({

@@ -1,8 +1,8 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// const baseUrl = "https://budgetbuddy-backend-next.vercel.app/api";
-const baseUrl = "http://192.168.158.211:8080/api";
+const baseUrl = "https://budgetbuddy-backend-next.vercel.app/api";
+// const baseUrl = "http://192.168.158.211:8080/api";
 
 export const userApi = createApi({
     reducerPath: "userApi",

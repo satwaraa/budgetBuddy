@@ -20,7 +20,6 @@ import Friends from "./screens/group/Friends.tsx";
 import icons from "./constants/icons.js";
 import Settings from "./screens/group/Settings.tsx";
 import CustomDrawer from "./components/CustomDrawer.tsx";
-import Icon from "react-native-vector-icons/FontAwesome";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 type IconProps = PropsWithChildren<{
@@ -61,7 +60,14 @@ function GroupCollection() {
                         elevation: 0,
                     },
                     headerTintColor: "#fff",
-                    drawerIcon: ({color}) => <Icon name="home" size={26} color={color} />,
+                    drawerIcon: ({focused, color}) => (
+                        <Ionicons
+                            name={focused ? "home" : "home-outline"}
+                            size={26}
+                            color="#fff"
+                        />
+                        // <Icon name={focused ? "home" : "home"} size={26} color={color} />
+                    ),
                 }}
             />
             <Drawer.Screen
@@ -77,8 +83,12 @@ function GroupCollection() {
                         elevation: 0,
                     },
                     headerTintColor: "#fff",
-                    drawerIcon: ({color}) => (
-                        <Ionicons name="people" size={26} color={color} />
+                    drawerIcon: ({focused, color}) => (
+                        <Ionicons
+                            name={focused ? "people" : "people-outline"}
+                            size={26}
+                            color={color}
+                        />
                     ),
                 }}
             />
@@ -96,8 +106,12 @@ function GroupCollection() {
                     },
                     headerTintColor: "#fff",
 
-                    drawerIcon: ({color}) => (
-                        <Ionicons name="person-add" size={26} color={color} />
+                    drawerIcon: ({focused, color}) => (
+                        <Ionicons
+                            name={focused ? "person-add" : "person-add-outline"}
+                            size={26}
+                            color={color}
+                        />
                     ),
                 }}
             />
@@ -114,8 +128,12 @@ function GroupCollection() {
                         elevation: 0,
                     },
                     headerTintColor: "#fff",
-                    drawerIcon: ({color}) => (
-                        <Ionicons name="settings" size={26} color={"#fff"} />
+                    drawerIcon: ({focused, color}) => (
+                        <Ionicons
+                            name={focused ? "settings" : "settings-outline"}
+                            size={26}
+                            color={"#fff"}
+                        />
                     ),
                 }}
             />

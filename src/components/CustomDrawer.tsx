@@ -112,7 +112,7 @@ const CustomDrawer = (props: any) => {
                 }}>
                 <TouchableOpacity onPress={() => {}} style={{paddingVertical: 15}}>
                     <View style={{flexDirection: "row", alignItems: "center"}}>
-                        <Ionicons name="share-social" size={22} />
+                        <Ionicons name="share-social-outline" size={22} />
                         <Text
                             style={{
                                 fontSize: 15,
@@ -130,7 +130,7 @@ const CustomDrawer = (props: any) => {
                     style={{paddingVertical: 15}}>
                     {!islogOutLoading ? (
                         <View style={{flexDirection: "row", alignItems: "center"}}>
-                            <Ionicons name="exit" size={22} />
+                            <Ionicons name="exit-outline" size={22} />
                             <Text
                                 style={{
                                     fontSize: 15,
