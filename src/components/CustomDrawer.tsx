@@ -52,7 +52,6 @@ const CustomDrawer = (props: any) => {
                     routes: [{name: "Home"}],
                 }),
             );
-            navigation.navigate("Home");
         }
     }, [logOutSuccess]);
 

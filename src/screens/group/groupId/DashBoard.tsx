@@ -111,19 +111,19 @@ const DashBoard = () => {
                         <FlatList
                             data={[1]}
                             renderItem={() => (
-                                <View className="flex-row  ">
+                                <View className="flex items-stretch justify-center  min-w-[98vw]">
                                     <DaysLeft
-                                        styles="h-[30vh] w-[60vw] bg-yellow-50  rounded-lg m-2 "
+                                        styles="h-[15vh] w-[90vw] bg-yellow-50  rounded-lg m-auto"
                                         groupId={groupId}
                                     />
-                                    <MonthPercent
+                                    {/* <MonthPercent
                                         styles="h-[30vh] w-[60vw] bg-yellow-50  rounded-lg m-2"
                                         groupId={groupId}
                                     />
                                     <TotalCredits
                                         styles="h-[30vh] w-[60vw] bg-yellow-50  rounded-lg m-2"
                                         groupId={groupId}
-                                    />
+                                    /> */}
                                 </View>
                             )}
                             horizontal

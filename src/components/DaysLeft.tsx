@@ -41,8 +41,8 @@ const DaysLeft = ({styles, groupId}: any) => {
             className={`${styles} items-center justify-center  `}
             style={containerStyle}>
             <Text className="font-bold text-4xl  text-black  ">Rs.{moneyLeft}</Text>
-            <Text className="font-psemibold text-xl text-black "> Left for</Text>
-            <Text className="font-bold text-4xl text-black">{daysRemaining} Days.</Text>
+            <Text className="font-psemibold text-xl text-black "> Left </Text>
+            {/* <Text className="font-bold text-4xl text-black">{daysRemaining} Days.</Text> */}
         </View>
     );
 };
