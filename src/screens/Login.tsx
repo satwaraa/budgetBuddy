@@ -1,4 +1,4 @@
-import {Alert, View} from "react-native";
+import {Alert, Text, TouchableOpacity, View} from "react-native";
 import React, {useEffect, useState} from "react";
 import {SafeAreaView} from "react-native-safe-area-context";
 import CustomButton from "../components/CustomButton";
@@ -68,8 +68,17 @@ const LogIn = ({navigation}: any) => {
                     autoCapitalize="none"
                 />
             </View>
-
-            <View className="justify-center items-center">
+            <View className="w-full justify-center items-center flex-row mt-2 mb-0 pb-0">
+                <TouchableOpacity
+                    className="m-0 p-0 flex-row"
+                    onPress={() => {
+                        navigation.navigate("SignUp");
+                    }}>
+                    <Text className="font-bold">Don't have an Account? </Text>
+                    <Text className=" font-bold text-secondary-100">SignUp</Text>
+                </TouchableOpacity>
+            </View>
+            <View className="justify-center items-center mt-0 pt-0">
                 <CustomButton
                     title="Log In"
                     isLoading={isLoading}
@@ -80,7 +89,7 @@ const LogIn = ({navigation}: any) => {
                             Alert.alert("Warning", "Email and password required.");
                         }
                     }}
-                    containerStyles="w-[90%] mt-7"
+                    containerStyles="w-[90%] mt-2"
                     textStyles="text-white"
                 />
             </View>

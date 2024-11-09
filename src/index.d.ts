@@ -5,4 +5,5 @@ export type RootStackParamList = {
     GroupTabs: {groupId: string};
     Budget: {groupId: string};
     Dashboard: {groupId: string};
+    SignUp: undefined;
 };

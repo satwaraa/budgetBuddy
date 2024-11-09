@@ -49,7 +49,7 @@ const CustomDrawer = (props: any) => {
             navigation.dispatch(
                 CommonActions.reset({
                     index: 0,
-                    routes: [{name: "Home"}],
+                    routes: [{name: "Login"}],
                 }),
             );
         }

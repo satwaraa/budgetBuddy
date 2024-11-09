@@ -143,7 +143,7 @@ export const userApi = createApi({
             query: FormData => ({
                 url: "/setAvatar",
                 method: "POST",
-                body: FormData,
+                data: FormData,
                 formdata: true,
             }),
         }),
@@ -152,6 +152,13 @@ export const userApi = createApi({
                 url: "/changePassword",
                 method: "PATCH",
                 body: body,
+            }),
+        }),
+        serachUser: builder.mutation({
+            query: body => ({
+                url: "/searchUser",
+                method: "POST",
+                body: {searchUser: body},
             }),
         }),
     }),
@@ -176,4 +183,5 @@ export const {
     useResetGroupMutation,
     useSetAvatarMutation,
     useChangePasswordMutation,
+    useSerachUserMutation,
 } = userApi;

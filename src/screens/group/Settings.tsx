@@ -15,25 +15,24 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import BallBeat from "../../components/BallBeat";
 import {CommonActions, useNavigation} from "@react-navigation/native";
-// import CheckBox from "@react-native-community/checkbox";
 
-// const createFormData = (photo: ImagePicker.ImagePickerResponse, body = {}) => {
-//     const data = new FormData();
+const createFormData = (photo: ImagePicker.ImagePickerResponse, body = {}) => {
+    const data = new FormData();
 
-//     if (photo.assets && photo.assets.length > 0) {
-//         data.append("file", {
-//             name: photo.assets[0].fileName,
-//             type: "image/jpeg",
-//             uri: photo.assets[0].uri,
-//         });
-//     }
+    if (photo.assets && photo.assets.length > 0) {
+        data.append("file", {
+            name: photo.assets[0].fileName,
+            type: "image/jpeg",
+            uri: photo.assets[0].uri,
+        });
+    }
 
-//     Object.keys(body).forEach(key => {
-//         // @ts-ignore
-//         data.append(key, body[key]);
-//     });
-//     return data;
-// };
+    Object.keys(body).forEach(key => {
+        // @ts-ignore
+        data.append(key, body[key]);
+    });
+    return data;
+};
 
 const Settings = () => {
     const navigation = useNavigation();
@@ -185,27 +184,28 @@ const Settings = () => {
                                         size: response.assets[0].fileSize,
                                     });
 
-                                    await fetch(
-                                        "http://192.168.158.251:8080/api/setAvatar",
-                                        {
-                                            method: "post",
+                                    setAvatar(formData);
+                                    // await fetch(
+                                    //     "http://192.168.158.251:8080/api/setAvatar",
+                                    //     {
+                                    //         method: "post",
 
-                                            body: formData,
-                                            headers: {
-                                                accesstoken:
-                                                    (await AsyncStorage.getItem(
-                                                        "accessToken",
-                                                    )) || "",
-                                                refreshToken:
-                                                    (await AsyncStorage.getItem(
-                                                        "refreshToken",
-                                                    )) || "",
-                                                "Content-Type": "multipart/form-data",
-                                            },
-                                        },
-                                    )
-                                        .then(res => {})
-                                        .catch(res => {});
+                                    //         body: formData,
+                                    //         headers: {
+                                    //             accesstoken:
+                                    //                 (await AsyncStorage.getItem(
+                                    //                     "accessToken",
+                                    //                 )) || "",
+                                    //             refreshToken:
+                                    //                 (await AsyncStorage.getItem(
+                                    //                     "refreshToken",
+                                    //                 )) || "",
+                                    //             "Content-Type": "multipart/form-data",
+                                    //         },
+                                    //     },
+                                    // )
+                                    //     .then(res => {})
+                                    //     .catch(res => {});
                                 }
                             });
                         }}>

@@ -74,6 +74,7 @@ const Home = ({navigation}: any) => {
                 <CustomButton
                     title="Sign Up"
                     handlePress={() => {
+                        navigation.navigate("SignUp");
                         // router.push("/signUp");
                     }}
                     containerStyles="w-[90%] mt-7 "

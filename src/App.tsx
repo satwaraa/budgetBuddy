@@ -21,6 +21,8 @@ import icons from "./constants/icons.js";
 import Settings from "./screens/group/Settings.tsx";
 import CustomDrawer from "./components/CustomDrawer.tsx";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import signUp from "./screens/SignUp.tsx";
+import SignUp from "./screens/SignUp.tsx";
 
 type IconProps = PropsWithChildren<{
     name: string;
@@ -262,6 +264,11 @@ const App = () => {
                     <Stack.Screen
                         name="Login"
                         component={Login}
+                        options={{headerShown: false}}
+                    />
+                    <Stack.Screen
+                        name="SignUp"
+                        component={SignUp}
                         options={{headerShown: false}}
                     />
                     <Stack.Screen
