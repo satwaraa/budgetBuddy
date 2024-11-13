@@ -21,8 +21,15 @@ const SignUp = () => {
         name: "",
         password: "",
     });
-    const [signMeUp, {data: signupData, error: signupError, isSuccess: signupSuccess}] =
-        useSignupMutation();
+    const [
+        signMeUp,
+        {
+            data: signupData,
+            error: signupError,
+            isSuccess: signupSuccess,
+            isLoading: isSignupLoading,
+        },
+    ] = useSignupMutation();
     const navigation = useNavigation();
     useEffect(() => {
         if (signupError) {
@@ -98,7 +105,8 @@ const SignUp = () => {
             </View>
             <View className="justify-center items-center">
                 <CustomButton
-                    title="Log In"
+                    title="SignIn"
+                    isLoading={isSignupLoading}
                     handlePress={() => {
                         if (
                             form.email != "" &&
@@ -108,7 +116,7 @@ const SignUp = () => {
                         ) {
                             signMeUp({signUp: form});
                         } else {
-                            Alert.alert("Warning", "poora likh madarchod");
+                            Alert.alert("Warning", "All feilds are required.");
                         }
                     }}
                     containerStyles="w-[90%] mt-2"
