@@ -1,8 +1,9 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {getVisitorId} from "../utils/visitorId";
 
-const baseUrl = "https://budgetbuddy-backend-next.vercel.app/api";
-// const baseUrl = "http://192.168.158.211:8080/api";
+// const baseUrl = "https://budgetbuddy-backend-next.vercel.app/api";
+const baseUrl = "http://192.168.103.105:8080/api";
 
 export const userApi = createApi({
     reducerPath: "userApi",
@@ -11,6 +12,10 @@ export const userApi = createApi({
         credentials: "include",
         async prepareHeaders(headers: Headers) {
             try {
+                const visitorId = await getVisitorId();
+                if (visitorId) {
+                    headers.set("visitorId", visitorId);
+                }
                 let accessToken = await AsyncStorage.getItem("accessToken");
                 let refreshToken = await AsyncStorage.getItem("refreshToken");
                 if (refreshToken) {
@@ -26,14 +31,14 @@ export const userApi = createApi({
     endpoints: builder => ({
         login: builder.mutation({
             query: (credentials: any) => ({
-                url: "/login",
+                url: "/auth/login",
                 method: "POST",
                 body: {...credentials},
             }),
         }),
         signup: builder.mutation({
             query: Credentials => ({
-                url: "/signUp",
+                url: "/auth/signUp",
                 method: "POST",
                 body: {...Credentials},
             }),
@@ -127,7 +132,7 @@ export const userApi = createApi({
         }),
         whoAmI: builder.query({
             query: () => ({
-                url: "/whoAmI",
+                url: "/auth/me",
                 method: "GET",
             }),
         }),
