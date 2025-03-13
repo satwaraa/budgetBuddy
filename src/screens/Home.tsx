@@ -37,15 +37,18 @@ const Home = ({navigation}: any) => {
     useEffect(() => {
         whoAmI("");
     }, []);
+    useEffect(() => {
+        console.log(data, error, isLoading, isSuccess);
+    }, [data, error, isLoading, isSuccess]);
 
     useEffect(() => {
         if (data?.userInformation) {
             dispatch(setUserInfomation(data.userInformation));
         }
 
-        // @ts-ignore
-        if (error && error.status == 401) {
-            // navigation.navigate("Login");
+        if (error) {
+            console.log("removing splashScreen", data, error, isLoading, isSuccess);
+
             SplashScreen.hide();
         }
         if (isSuccess) {

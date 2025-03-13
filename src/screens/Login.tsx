@@ -2,7 +2,6 @@ import {Alert, Text, TouchableOpacity, View} from "react-native";
 import React, {useEffect, useState} from "react";
 import {SafeAreaView} from "react-native-safe-area-context";
 import CustomButton from "../components/CustomButton";
-
 import {useLoginMutation} from "../api/user";
 import FormField from "../components/FormField";
 import {CommonActions} from "@react-navigation/native";
@@ -27,6 +26,7 @@ const LogIn = ({navigation}: any) => {
     });
 
     useEffect(() => {
+        console.log(loginError, loginData, loginSuccess);
         if (loginData?.userInformation) {
             dispatch(setUserInfomation(loginData.userInformation));
         }

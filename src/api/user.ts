@@ -104,7 +104,7 @@ export const userApi = createApi({
         }),
         getGroups: builder.query({
             query: () => ({
-                url: "/getGroups",
+                url: "/user/getGroups",
                 method: "GET",
             }),
             providesTags: ["groups", "refresh"],
