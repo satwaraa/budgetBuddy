@@ -38,7 +38,7 @@ const Home = ({navigation}: any) => {
         whoAmI("");
     }, []);
     useEffect(() => {
-        console.log(data, error, isLoading, isSuccess);
+        console.log("it's this -> ", data, error, isLoading, isSuccess);
     }, [data, error, isLoading, isSuccess]);
 
     useEffect(() => {

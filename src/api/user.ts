@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import {getVisitorId} from "../utils/visitorId";
 
 // const baseUrl = "https://budgetbuddy-backend-next.vercel.app/api";
-const baseUrl = "http://192.168.103.105:8080/api";
+const baseUrl = "http://192.168.103.161:8082/api";
 
 export const userApi = createApi({
     reducerPath: "userApi",
