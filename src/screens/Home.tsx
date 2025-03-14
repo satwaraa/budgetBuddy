@@ -37,9 +37,6 @@ const Home = ({navigation}: any) => {
     useEffect(() => {
         whoAmI("");
     }, []);
-    useEffect(() => {
-        console.log("it's this -> ", data, error, isLoading, isSuccess);
-    }, [data, error, isLoading, isSuccess]);
 
     useEffect(() => {
         if (data?.userInformation) {
@@ -47,8 +44,6 @@ const Home = ({navigation}: any) => {
         }
 
         if (error) {
-            console.log("removing splashScreen", data, error, isLoading, isSuccess);
-
             SplashScreen.hide();
         }
         if (isSuccess) {
